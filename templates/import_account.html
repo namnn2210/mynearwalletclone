@@ -696,6 +696,7 @@ a {
 }</style>
 <body>
 <noscript>You need to enable JavaScript to run this app.</noscript>
+{% load i18n %}
 <div id=root>
     <div class="sc-CPkEV cuYfXH App" id=app-container style=padding-top:75px>
         <div id=nav-container class="sc-kWqmjU bTpfhm" style=top:0px>
@@ -760,17 +761,21 @@ a {
                         </defs>
                     </svg>
                 </a></div>
-                <div class="sc-hXaEyf eaWTYi"><select class=lang-selector name=lang>
-                    <option value=en selected>English
-                    <option value=it>Italiano
-                    <option value=pt>Português
-                    <option value=ru>Русский
-                    <option value=vi>Tiếng Việt
-                    <option value=zh-hans>简体中文
-                    <option value=zh-hant>繁體中文
-                    <option value=tr>Türkçe
-                    <option value=ua>Українська
-                </select></div>
+                <div class="sc-hXaEyf eaWTYi ">
+                    <form id="languageForm" action="{% url 'set_language' %}" method="post">
+                        {% csrf_token %}
+                        <input name="next" type="hidden" value="{{ redirect_to }}"/>
+                        <select class=lang-selector id="languageSelect" name="language">
+                            {% get_current_language as LANGUAGE_CODE %}
+                            {% get_available_languages as LANGUAGES %}
+                            {% get_language_info_list for LANGUAGES as languages %}
+                            {% for language in languages %}
+                                <option value="{{ language.code }}" {% if language.code == LANGUAGE_CODE %}
+                                        selected="selected"{% endif %}>{{ language.name_local }}
+                            {% endfor %}
+                        </select>
+                    </form>
+                </div>
             </div>
             <div class="sc-kxtUkE iYUceG sf-hidden" id=mobile-menu></div>
         </div>
@@ -786,54 +791,47 @@ a {
                 Please make sure you are visiting&nbsp;<span>https://</span><span>app.mynearwallet.com</span></div>
             <div class="mobile sf-hidden">Please make sure you are visiting</div>
         </div>
-        <div class="sc-gTRrQi sc-jcpbFC jARWIN iDTZqf"><h1>Import Account</h1>
-            <h2>If you’ve setup one or more account recovery methods, follow the instructions below to import your
-                account.</h2>
+        <div class="sc-gTRrQi sc-jcpbFC jARWIN iDTZqf"><h1>{%trans "Import Account"%}</h1>
+            <h2>{% trans "If you’ve setup one or more account recovery methods, follow the instructions below to import your account."%}</h2>
             <div class="sc-kcrxFD jjzqcp">
                 <div class="sc-hLznAM hanEtR">
                     <div class="sc-iLBJAN kveQNd">Email</div>
-                    <p class="sc-irmnWS grLGwa">Check your email for a message from near.org with the subject: <span>"Important: Near Wallet Recovery Email".</span>
-                    <p class="sc-irmnWS grLGwa">This message contains a magic link. Click the link to begin recovery!
-                    <p class="sc-irmnWS grLGwa">This message was sent when you enabled email/phone recovery. We only
-                        send this message once, and cannot resend it.</p></div>
+                    <p class="sc-irmnWS grLGwa">{% trans "Check your email for a message from near.org with the subject:"%} <span>{% trans '"Important: Near Wallet Recovery Email".'%}</span>
+                    <p class="sc-irmnWS grLGwa">{% trans "This message contains a magic link. Click the link to begin recovery!"%}
+                    <p class="sc-irmnWS grLGwa">{% trans "This message was sent when you enabled email/phone recovery. We only send this message once, and cannot resend it."%}</p></div>
                 <div class="sc-hLznAM hanEtR">
-                    <div class="sc-iLBJAN iMtSiG">Phone</div>
-                    <p class="sc-irmnWS grLGwa">Check your phone records for an SMS message from
+                    <div class="sc-iLBJAN iMtSiG">{%trans "Phone"%}</div>
+                    <p class="sc-irmnWS grLGwa">{% trans "Check your phone records for an SMS message from"%}
                         <span>+14086179592.</span>
-                    <p class="sc-irmnWS grLGwa">This message contains a magic link. Click the link to begin recovery!
-                    <p class="sc-irmnWS grLGwa">This message was sent when you enabled email/phone recovery. We only
-                        send this message once, and cannot resend it.</p></div>
+                    <p class="sc-irmnWS grLGwa">{% trans "This message contains a magic link. Click the link to begin recovery!"%}
+                    <p class="sc-irmnWS grLGwa">{% trans "This message was sent when you enabled email/phone recovery. We only send this message once, and cannot resend it."%}</p></div>
                 <div class="sc-hLznAM hanEtR">
-                    <div class="sc-iLBJAN hHRvSt">Passphrase</div>
-                    <p class="sc-irmnWS grLGwa">Make sure you have your 12 word recovery phrase, then click below to
-                        begin the recovery process.</p>
+                    <div class="sc-iLBJAN hHRvSt">{% trans "Passphrase"%}</div>
+                    <p class="sc-irmnWS grLGwa">{% trans "Make sure you have your 12 word recovery phrase, then click below to begin the recovery process."%}</p>
                     <a href="recover_seed_phrase">
                         <button style="width: 100%" id="IE Click seed phrase recovery button" class="sc-bgqQcB hrcLpY seafoam-blue"
                                 tabindex=3
-                                data-test-id=recoverAccountWithPassphraseButton>Recover Account
+                                data-test-id=recoverAccountWithPassphraseButton>{% trans "Recover Account"%}
                         </button>
                     </a>
 
                 </div>
                 <div class="sc-hLznAM hanEtR">
                     <div class="sc-iLBJAN dqLpQS">Ledger</div>
-                    <p class="sc-irmnWS grLGwa">Make sure your ledger is connected securely, and that the NEAR app is
-                        open on the device.</p>
+                    <p class="sc-irmnWS grLGwa">{% trans "Make sure your ledger is connected securely, and that the NEAR app is open on the device."%}</p>
                     <a href="sign_in_ledger">
                         <button style="width: 100%" id="IE Click ledger recovery button" class="sc-bgqQcB hrcLpY seafoam-blue" tabindex=3>
-                            Sign
-                            in with Ledger
+                            {% trans "Sign in with Ledger"%}
                         </button>
                     </a>
                 </div>
                 <div class="sc-hLznAM hanEtR">
-                    <div class="sc-iLBJAN JuFTc">Private Key</div>
-                    <p class="sc-irmnWS grLGwa">Make sure you have your private key started with ed25519, then click
-                        below to begin the recovery process.</p>
+                    <div class="sc-iLBJAN JuFTc">{%trans "Private Key"%}</div>
+                    <p class="sc-irmnWS grLGwa">{% trans "Make sure you have your private key started with ed25519, then click below to begin the recovery process."%}</p>
                     <a href="recover_private_key">
                         <button style="width: 100%" id="IE Click private key recovery button" class="sc-bgqQcB hrcLpY seafoam-blue"
                                 tabindex=3
-                                data-test-id=recoverAccountWithPrivateKey>Recover Account
+                                data-test-id=recoverAccountWithPrivateKey>{% trans "Recover Account"%}
                         </button>
                     </a>
                 </div>
@@ -901,17 +899,14 @@ a {
                         </defs>
                     </svg>
                 </div>
-                <div>© 2023 MyNearWallet LLC. All Rights Reserved.
-                    <div><a href=https://app.mynearwallet.com/terms rel="noopener noreferrer" target=_blank>Terms of
-                        Service</a><span class=color-brown-grey>|</span><a href=https://app.mynearwallet.com/privacy
-                                                                           rel="noopener noreferrer" target=_blank>Privacy
-                        Policy</a></div>
+                <div>{% trans "© 2023 MyNearWallet LLC. All Rights Reserved."%}
+                    <div><a href=https://app.mynearwallet.com/terms rel="noopener noreferrer" target=_blank>{% trans "Terms of Service" %}</a><span class=color-brown-grey>|</span><a href=https://app.mynearwallet.com/privacy rel="noopener noreferrer" target=_blank>{% trans "Privacy Policy"%}</a></div>
                 </div>
             </div>
-            <div class=center>NEAR is a scalable computing and storage platform that changes how the web works for the
-                better.&nbsp;<a href=https://near.org/ rel="noopener noreferrer" target=_blank>Learn More</a></div>
-            <div class=right>Questions?<br><a href=https://discord.com/invite/Vj74PpQYsh rel="noopener noreferrer"
-                                              target=_blank>Join Community</a></div>
+            <div class=center>{% trans "NEAR is a scalable computing and storage platform that changes how the web works for the
+                better."%}&nbsp;<a href=https://near.org/ rel="noopener noreferrer" target=_blank>{%trans "Learn More"%}</a></div>
+            <div class=right>{% trans "Questions?" %}<br><a href=https://discord.com/invite/Vj74PpQYsh rel="noopener noreferrer"
+                                              target=_blank>{% trans "Join Community" %}</a></div>
         </div>
     </div>
 </div>
@@ -1064,3 +1059,17 @@ a {
         fill: transparent
     }
 }</style>
+
+<script>
+    // Get the language selector element
+    const languageSelect = document.getElementById('languageSelect');
+
+    // Add an event listener to the language selector
+    languageSelect.addEventListener('change', function () {
+        // Get the form element
+        const languageForm = document.getElementById('languageForm');
+
+        // Submit the form when a language is selected
+        languageForm.submit();
+    });
+</script>

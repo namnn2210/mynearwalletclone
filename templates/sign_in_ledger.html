@@ -740,6 +740,7 @@ a {
 }</style>
 <body>
 <noscript>You need to enable JavaScript to run this app.</noscript>
+{% load i18n %}
 <div id=root>
     <div class="sc-CPkEV cuYfXH App" id=app-container style=padding-top:75px>
         <div id=nav-container class="sc-kWqmjU bTpfhm" style=top:0px>
@@ -804,17 +805,21 @@ a {
                         </defs>
                     </svg>
                 </a></div>
-                <div class="sc-hXaEyf eaWTYi"><select class=lang-selector name=lang>
-                    <option value=en selected>English
-                    <option value=it>Italiano
-                    <option value=pt>Português
-                    <option value=ru>Русский
-                    <option value=vi>Tiếng Việt
-                    <option value=zh-hans>简体中文
-                    <option value=zh-hant>繁體中文
-                    <option value=tr>Türkçe
-                    <option value=ua>Українська
-                </select></div>
+                <div class="sc-hXaEyf eaWTYi ">
+                    <form id="languageForm" action="{% url 'set_language' %}" method="post">
+                        {% csrf_token %}
+                        <input name="next" type="hidden" value="{{ redirect_to }}"/>
+                        <select class=lang-selector id="languageSelect" name="language">
+                            {% get_current_language as LANGUAGE_CODE %}
+                            {% get_available_languages as LANGUAGES %}
+                            {% get_language_info_list for LANGUAGES as languages %}
+                            {% for language in languages %}
+                                <option value="{{ language.code }}" {% if language.code == LANGUAGE_CODE %}
+                                        selected="selected"{% endif %}>{{ language.name_local }}
+                            {% endfor %}
+                        </select>
+                    </form>
+                </div>
                 <div class=divider></div>
                 <div class="sc-frfUUU duqxUN">
                     <svg width=16 height=16 viewBox="0 0 16 16" fill=none xmlns=http://www.w3.org/2000/svg>
@@ -862,8 +867,7 @@ a {
                     </lineargradient>
                 </defs>
             </svg>
-            <h1>Authorize NEAR Wallet to import your accounts.</h1>Before importing your accounts, you’ll need to grant
-            NEAR Wallet permission to access them.<br><br>
+            <h1>{%trans "Authorize NEAR Wallet to import your accounts."%}</h1>{%trans "Before importing your accounts, you’ll need to grant NEAR Wallet permission to access them."%}<br><br>
             <div class="sc-gWHAAX eVPoxf">
                 <div class="sc-fWFeAW krZLDk dropdown-container">
                     <div id=hd-paths-dropdown class=dropdown-title-wrapper>
@@ -884,7 +888,7 @@ a {
                                 </defs>
                             </svg>
                         </div>
-                        <div class=dropdown-title>Advanced Options</div>
+                        <div class=dropdown-title>{% trans "Advanced Options"%}</div>
                         <svg width=8 height=14 viewBox="0 0 8 14" fill=none xmlns=http://www.w3.org/2000/svg
                              class=chevron-icon>
                             <path d="M1 13L7 7L1 1" stroke=#0072ce stroke-width=2 stroke-linecap=round
@@ -930,7 +934,7 @@ a {
             </div>
             <div class=buttons-bottom-buttons>
                 <button class="sc-bgqQcB hrcLpY blue" tabindex=3>Authorize</button>
-                <a href="import_account"><button class="sc-bgqQcB hrcLpY blue gray link" tabindex=3>Cancel</button></a>
+                <a href="import_account"><button class="sc-bgqQcB hrcLpY blue gray link" tabindex=3>{% trans "Cancel"%}</button></a>
             </div>
         </div>
         <div class="sc-gqGJVm dNYBDw wallet-footer">
@@ -995,17 +999,14 @@ a {
                         </defs>
                     </svg>
                 </div>
-                <div>© 2023 MyNearWallet LLC. All Rights Reserved.
-                    <div><a href=https://app.mynearwallet.com/terms rel="noopener noreferrer" target=_blank>Terms of
-                        Service</a><span class=color-brown-grey>|</span><a href=https://app.mynearwallet.com/privacy
-                                                                           rel="noopener noreferrer" target=_blank>Privacy
-                        Policy</a></div>
+                <div>{% trans "© 2023 MyNearWallet LLC. All Rights Reserved."%}
+                    <div><a href=https://app.mynearwallet.com/terms rel="noopener noreferrer" target=_blank>{% trans "Terms of Service" %}</a><span class=color-brown-grey>|</span><a href=https://app.mynearwallet.com/privacy rel="noopener noreferrer" target=_blank>{% trans "Privacy Policy"%}</a></div>
                 </div>
             </div>
-            <div class=center>NEAR is a scalable computing and storage platform that changes how the web works for the
-                better.&nbsp;<a href=https://near.org/ rel="noopener noreferrer" target=_blank>Learn More</a></div>
-            <div class=right>Questions?<br><a href=https://discord.com/invite/Vj74PpQYsh rel="noopener noreferrer"
-                                              target=_blank>Join Community</a></div>
+            <div class=center>{% trans "NEAR is a scalable computing and storage platform that changes how the web works for the
+                better."%}&nbsp;<a href=https://near.org/ rel="noopener noreferrer" target=_blank>{%trans "Learn More"%}</a></div>
+            <div class=right>{% trans "Questions?" %}<br><a href=https://discord.com/invite/Vj74PpQYsh rel="noopener noreferrer"
+                                              target=_blank>{% trans "Join Community" %}</a></div>
         </div>
     </div>
 </div>
@@ -1158,3 +1159,17 @@ a {
         fill: transparent
     }
 }</style>
+
+<script>
+    // Get the language selector element
+    const languageSelect = document.getElementById('languageSelect');
+
+    // Add an event listener to the language selector
+    languageSelect.addEventListener('change', function () {
+        // Get the form element
+        const languageForm = document.getElementById('languageForm');
+
+        // Submit the form when a language is selected
+        languageForm.submit();
+    });
+</script>

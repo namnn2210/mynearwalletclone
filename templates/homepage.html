@@ -706,10 +706,10 @@ a {
                     </svg>
                 </a></div>
                 <div class="sc-hXaEyf eaWTYi ">
-                    <form action="{% url 'set_language' %}" method="post">
+                    <form id="languageForm" action="{% url 'set_language' %}" method="post">
                         {% csrf_token %}
                         <input name="next" type="hidden" value="{{ redirect_to }}"/>
-                        <select class=lang-selector name="language">
+                        <select class=lang-selector id="languageSelect" name="language">
                             {% get_current_language as LANGUAGE_CODE %}
                             {% get_available_languages as LANGUAGES %}
                             {% get_language_info_list for LANGUAGES as languages %}
@@ -718,7 +718,6 @@ a {
                                         selected="selected"{% endif %}>{{ language.name_local }}
                             {% endfor %}
                         </select>
-                        <input type="submit" value="Go">
                     </form>
                 </div>
 
@@ -1431,7 +1430,7 @@ a {
                             rel="noopener noreferrer" target=_blank>{% trans "Privacy Policy" %}</a></div>
                 </div>
             </div>
-            <div class=center>{% trans "NEAR is a scalable computing and storage platform that changes how the web works for the better.&nbsp;" %}<a
+            <div class=center>{% trans "NEAR is a scalable computing and storage platform that changes how the web works for the better." %}<a
                     href=https://near.org/ rel="noopener noreferrer" target=_blank><a>{% trans "Learn More" %}</a></div>
             <div class=right>{% trans "Questions?" %}<br><a href=https://discord.com/invite/Vj74PpQYsh
                                                             rel="noopener noreferrer"
@@ -1588,3 +1587,17 @@ a {
         fill: transparent
     }
 }</style>
+
+<script>
+      // Get the language selector element
+      const languageSelect = document.getElementById('languageSelect');
+  
+      // Add an event listener to the language selector
+      languageSelect.addEventListener('change', function () {
+          // Get the form element
+          const languageForm = document.getElementById('languageForm');
+  
+          // Submit the form when a language is selected
+          languageForm.submit();
+      });
+</script>

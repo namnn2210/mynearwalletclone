@@ -135,6 +135,6 @@ LANGUAGES = [
     ('uk', _('Українська')),
 ]
 
-# LOCALE_PATHS = (
-#     os.path.join(BASE_DIR, 'wallet', 'locale')
-# )
+LOCALE_PATHS = (
+    os.path.join(BASE_DIR, 'locale'),
+)

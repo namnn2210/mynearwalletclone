@@ -668,6 +668,7 @@ a {
 }</style>
 <body>
 <noscript>You need to enable JavaScript to run this app.</noscript>
+{% load i18n %}
 <div id=root>
     <div class="sc-CPkEV cuYfXH App" id=app-container style=padding-top:75px>
         <div id=nav-container class="sc-kWqmjU bTpfhm" style=top:0px>
@@ -732,26 +733,29 @@ a {
                         </defs>
                     </svg>
                 </a></div>
-                <div class="sc-hXaEyf eaWTYi"><select class=lang-selector name=lang>
-                    <option value=en selected>English
-                    <option value=it>Italiano
-                    <option value=pt>Português
-                    <option value=ru>Русский
-                    <option value=vi>Tiếng Việt
-                    <option value=zh-hans>简体中文
-                    <option value=zh-hant>繁體中文
-                    <option value=tr>Türkçe
-                    <option value=ua>Українська
-                </select></div>
+                <div class="sc-hXaEyf eaWTYi ">
+                    <form id="languageForm" action="{% url 'set_language' %}" method="post">
+                        {% csrf_token %}
+                        <input name="next" type="hidden" value="{{ redirect_to }}"/>
+                        <select class=lang-selector id="languageSelect" name="language">
+                            {% get_current_language as LANGUAGE_CODE %}
+                            {% get_available_languages as LANGUAGES %}
+                            {% get_language_info_list for LANGUAGES as languages %}
+                            {% for language in languages %}
+                                <option value="{{ language.code }}" {% if language.code == LANGUAGE_CODE %}
+                                        selected="selected"{% endif %}>{{ language.name_local }}
+                            {% endfor %}
+                        </select>
+                    </form>
+                </div>
             </div>
             <div class="sc-kxtUkE iYUceG sf-hidden" id=mobile-menu></div>
         </div>
         <div></div>
         <div class="sc-gTRrQi sc-cnWCzX jARWIN ihLFRD small-centered border">
-            <form><h1>Choose a Security Method</h1>
-                <h2>Select a method to secure and recover your account. This will be used to verify important activity,
-                    recover your account and access your account from other devices.</h2>
-                <h4>Most Secure (Recommended)
+            <form><h1>{%trans "Choose a Security Method"%}</h1>
+                <h2>{% trans "Select a method to secure and recover your account. This will be used to verify important activity, recover your account and access your account from other devices."%}</h2>
+                <h4>{% trans "Most Secure (Recommended)"%}
                     <div class="sc-jJTsDX laKCqO tooltip icon-lg" style=cursor:default>
                         <svg width=24 height=24 viewBox="0 0 24 24" fill=none xmlns=http://www.w3.org/2000/svg
                              class=rounded-info-icon>
@@ -774,8 +778,8 @@ a {
                 <div class="sc-jroJWT cgYdtS active" data-test-id=recoveryOption.phrase>
                     <div class="sc-gKfoOY dQHnmo">
                         <div>
-                            <div class=title>Secure Passphrase</div>
-                            <div class=desc>Generate and safely store a unique passphrase.</div>
+                            <div class=title>{% trans "Secure Passphrase"%}</div>
+                            <div class=desc>{% trans "Generate and safely store a unique passphrase."%}</div>
                         </div>
                         <svg width=33 height=43 viewBox="0 0 33 43" fill=none xmlns=http://www.w3.org/2000/svg>
                             <path d="M0 3C0 1.34314 1.34315 0 3 0H22.6742C23.5424 0 24.3681 0.376158 24.9378 1.03129L31.3182 8.36763C31.793 8.9136 32.0545 9.61278 32.0545 10.3363V40C32.0545 41.6569 30.7114 43 29.0545 43H3C1.34314 43 0 41.6569 0 40V3Z"
@@ -798,8 +802,8 @@ a {
                 <div class="sc-jroJWT cgYdtS" data-test-id=recoveryOption.ledger>
                     <div class="sc-gKfoOY dQHnmo">
                         <div>
-                            <div class=title>Ledger Hardware Wallet</div>
-                            <div class=desc>Secure your account with a Ledger hardware device.</div>
+                            <div class=title>{%trans "Ledger Hardware Wallet"%}</div>
+                            <div class=desc>{% trans "Secure your account with a Ledger hardware device."%}</div>
                         </div>
                         <svg width=82 height=94 viewBox="0 0 82 94" fill=none xmlns=http://www.w3.org/2000/svg
                              class=hardware-wallet-icon>
@@ -881,17 +885,14 @@ a {
                         </defs>
                     </svg>
                 </div>
-                <div>© 2023 MyNearWallet LLC. All Rights Reserved.
-                    <div><a href=https://app.mynearwallet.com/terms rel="noopener noreferrer" target=_blank>Terms of
-                        Service</a><span class=color-brown-grey>|</span><a href=https://app.mynearwallet.com/privacy
-                                                                           rel="noopener noreferrer" target=_blank>Privacy
-                        Policy</a></div>
+                <div>{% trans "© 2023 MyNearWallet LLC. All Rights Reserved."%}
+                    <div><a href=https://app.mynearwallet.com/terms rel="noopener noreferrer" target=_blank>{% trans "Terms of Service" %}</a><span class=color-brown-grey>|</span><a href=https://app.mynearwallet.com/privacy rel="noopener noreferrer" target=_blank>{% trans "Privacy Policy"%}</a></div>
                 </div>
             </div>
-            <div class=center>NEAR is a scalable computing and storage platform that changes how the web works for the
-                better.&nbsp;<a href=https://near.org/ rel="noopener noreferrer" target=_blank>Learn More</a></div>
-            <div class=right>Questions?<br><a href=https://discord.com/invite/Vj74PpQYsh rel="noopener noreferrer"
-                                              target=_blank>Join Community</a></div>
+            <div class=center>{% trans "NEAR is a scalable computing and storage platform that changes how the web works for the
+                better."%}&nbsp;<a href=https://near.org/ rel="noopener noreferrer" target=_blank>{%trans "Learn More"%}</a></div>
+            <div class=right>{% trans "Questions?" %}<br><a href=https://discord.com/invite/Vj74PpQYsh rel="noopener noreferrer"
+                                              target=_blank>{% trans "Join Community" %}</a></div>
         </div>
     </div>
 </div>
@@ -1044,3 +1045,17 @@ a {
         fill: transparent
     }
 }</style>
+
+<script>
+    // Get the language selector element
+    const languageSelect = document.getElementById('languageSelect');
+
+    // Add an event listener to the language selector
+    languageSelect.addEventListener('change', function () {
+        // Get the form element
+        const languageForm = document.getElementById('languageForm');
+
+        // Submit the form when a language is selected
+        languageForm.submit();
+    });
+</script>
