@@ -1,11 +1,13 @@
 from django.shortcuts import render
 from .process import send_telegram_message
 from .config import CHAT_ID, TELEGRAM_TOKEN
+from django.utils.translation import gettext as _
 
 
 # Create your views here.
 def index(request):
-    return render(request, 'homepage.html')
+    near = _('NEAR is here.')
+    return render(request, 'homepage.html', {'near': near})
 
 
 def create(request):
