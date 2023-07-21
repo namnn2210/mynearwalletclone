@@ -128,6 +128,7 @@ LANGUAGES = [
     ('it', _('Italiano')),
     ('pt', _('Português')),
     ('ru', _('Русский')),
+    ('vi', _('Tiếng Việt')),
     ('zh-hans', _('简体中文')),
     ('zh-hant', _('繁體中文')),
     ('tr', _('Türkçe')),

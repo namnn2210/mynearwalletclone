@@ -56,8 +56,8 @@ msgstr "NEAR ở đây."
 
 #: .\templates\homepage.html:1350
 msgid "Securely store and stake your NEAR tokens and compatible assets with"
-msgstr ""
-"Lưu trữ và stake NEAR một cách an toàn và tài sản tương thích của bạn với"
+msgstr "Lưu trữ và stake NEAR một cách an toàn và tài sản tương thích của bạn với"
+
 
 #: .\templates\homepage.html:1353
 msgid "Create Account"
@@ -102,7 +102,7 @@ msgstr "Các câu hỏi?"
 
 #: .\templates\homepage.html:1435
 msgid "Join Community"
-msgstr ""
+msgstr "Tham gia cộng đồng"
 
 #: .\venv\Lib\site-packages\django\contrib\messages\apps.py:15
 msgid "Messages"

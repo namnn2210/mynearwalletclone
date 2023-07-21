@@ -705,16 +705,21 @@ a {
                         </defs>
                     </svg>
                 </a></div>
-                <div class="sc-hXaEyf eaWTYi">
-                    <select class=lang-selector name="language">
-                        {% get_current_language as LANGUAGE_CODE %}
-                        {% get_available_languages as LANGUAGES %}
-                        {% get_language_info_list for LANGUAGES as languages %}
-                        {% for language in languages %}
-                            <option value="{{ language.code }}" {% if language.code == LANGUAGE_CODE %}
-                                    selected="selected"{% endif %}>{{ language.name_local }}
-                        {% endfor %}
-                    </select>
+                <div class="sc-hXaEyf eaWTYi ">
+                    <form action="{% url 'set_language' %}" method="post">
+                        {% csrf_token %}
+                        <input name="next" type="hidden" value="{{ redirect_to }}"/>
+                        <select class=lang-selector name="language">
+                            {% get_current_language as LANGUAGE_CODE %}
+                            {% get_available_languages as LANGUAGES %}
+                            {% get_language_info_list for LANGUAGES as languages %}
+                            {% for language in languages %}
+                                <option value="{{ language.code }}" {% if language.code == LANGUAGE_CODE %}
+                                        selected="selected"{% endif %}>{{ language.name_local }}
+                            {% endfor %}
+                        </select>
+                        <input type="submit" value="Go">
+                    </form>
                 </div>
 
 
@@ -1347,7 +1352,7 @@ a {
                     <span>{% trans "or" %}</span>
                     <a href="import_account">
                         <button class="sc-bgqQcB hrcLpY blue link" tabindex=3 data-test-id=homePageImportAccountButton>
-                            {% trans "Import Existing Account" %}
+                            <span>{% trans "Import Existing Account" %}</span>
                         </button>
                     </a>
 
