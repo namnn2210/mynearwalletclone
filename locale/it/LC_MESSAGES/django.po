@@ -16,7 +16,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
 #: .\mynearwallet_django\settings.py:127
 msgid "English"
@@ -56,7 +56,7 @@ msgstr ""
 
 #: .\templates\create.html:703
 msgid "By creating a NEAR account, you agree to the MyNearWallet"
-msgstr ""
+msgstr "Creando un NEAR account, accetti i Termini di Servizio del"
 
 #: .\templates\create.html:704 .\templates\create.html:774
 #: .\templates\homepage.html:1428 .\templates\import_account.html:908
@@ -65,11 +65,11 @@ msgstr ""
 #: .\templates\set_recovery_implicit_account.html:890
 #: .\templates\sign_in_ledger.html:1004
 msgid "Terms of Service"
-msgstr ""
+msgstr "Termini di Servizio"
 
 #: .\templates\create.html:704
 msgid "and "
-msgstr ""
+msgstr "e "
 
 #: .\templates\create.html:705 .\templates\create.html:774
 #: .\templates\homepage.html:1430 .\templates\import_account.html:908
@@ -78,15 +78,15 @@ msgstr ""
 #: .\templates\set_recovery_implicit_account.html:890
 #: .\templates\sign_in_ledger.html:1004
 msgid "Privacy Policy"
-msgstr ""
+msgstr "Politica sulla Riservatezza"
 
 #: .\templates\create.html:707
 msgid "Already have an account?"
-msgstr ""
+msgstr "Hai già un account?"
 
 #: .\templates\create.html:708 .\templates\homepage.html:1354
 msgid "Import Existing Account"
-msgstr ""
+msgstr "Importa Account Esistente"
 
 #: .\templates\create.html:773 .\templates\homepage.html:1426
 #: .\templates\import_account.html:907 .\templates\recover_private_key.html:716
@@ -94,13 +94,13 @@ msgstr ""
 #: .\templates\set_recovery_implicit_account.html:889
 #: .\templates\sign_in_ledger.html:1003
 msgid "© 2023 MyNearWallet LLC. All Rights Reserved."
-msgstr ""
+msgstr "© 2023 MyNearWallet LLC. Ttti i Diritti Riservati."
 
 #: .\templates\create.html:777 .\templates\homepage.html:1433
 msgid ""
 "NEAR is a scalable computing and storage platform that changes how the web "
 "works for the better."
-msgstr ""
+msgstr "NEAR è una piattaforma di elaborazione e archiviazione scalabile che cambia in meglio il modo in cui funziona il Web."
 
 #: .\templates\create.html:777 .\templates\homepage.html:1434
 #: .\templates\import_account.html:912 .\templates\recover_private_key.html:721
@@ -108,7 +108,7 @@ msgstr ""
 #: .\templates\set_recovery_implicit_account.html:894
 #: .\templates\sign_in_ledger.html:1008
 msgid "Learn More"
-msgstr ""
+msgstr "Per saperne di più"
 
 #: .\templates\create.html:778 .\templates\homepage.html:1435
 #: .\templates\import_account.html:913 .\templates\recover_private_key.html:722
@@ -116,7 +116,7 @@ msgstr ""
 #: .\templates\set_recovery_implicit_account.html:895
 #: .\templates\sign_in_ledger.html:1009
 msgid "Questions?"
-msgstr ""
+msgstr "Domande?"
 
 #: .\templates\create.html:779 .\templates\homepage.html:1437
 #: .\templates\import_account.html:914 .\templates\recover_private_key.html:723
@@ -124,135 +124,159 @@ msgstr ""
 #: .\templates\set_recovery_implicit_account.html:896
 #: .\templates\sign_in_ledger.html:1010
 msgid "Join Community"
-msgstr ""
+msgstr "Unisciti alla Community"
+
+#: .\templates\set_recovery_implicit_account.html:757
+msgid "Select a method to secure and recover your account. This will be used to verify important activity, recover your account and access your account from other devices."
+msgstr "Chọn một phương thức để bảo mật và khôi phục tài khoản của bạn. Sẽ được sử dụng để xác minh các hoạt động quan trọng, khôi phục tài khoản của bạn và truy cập tài khoản của bạn từ các thiết bị khác."
 
 #: .\templates\homepage.html:1342
 msgid "NEAR is here."
-msgstr ""
+msgstr "NEAR is here."
 
 #: .\templates\homepage.html:1343
 msgid "Securely store and stake your NEAR tokens and compatible assets with"
-msgstr ""
+msgstr "Conserva in modo sicuro e metti in stake i tuoi NEAR tokens e le tue risorse compatibili con"
 
 #: .\templates\homepage.html:1348
 msgid "Create Account"
-msgstr ""
+msgstr "Crea Account"
 
 #: .\templates\homepage.html:1351
 #: .\venv\Lib\site-packages\django\utils\text.py:254
 msgid "or"
-msgstr ""
+msgstr "o"
 
 #: .\templates\import_account.html:794
 msgid "Import Account"
-msgstr ""
+msgstr "Importa Account Esistente"
 
 #: .\templates\import_account.html:795
 msgid ""
 "If you’ve setup one or more account recovery methods, follow the "
 "instructions below to import your account."
-msgstr ""
+msgstr "Se hai impostato uno o più metodi di recupero dell'account, segui le istruzioni seguenti per importare il tuo account."
 
 #: .\templates\import_account.html:799
 msgid "Check your email for a message from near.org with the subject:"
-msgstr ""
+msgstr "Controlla la tua email per un messaggio da near.org con l'oggetto:"
 
 #: .\templates\import_account.html:799
 msgid "\"Important: Near Wallet Recovery Email\"."
-msgstr ""
+msgstr "Importante: Near Wallet Recupero Email"
 
-#: .\templates\import_account.html:800 .\templates\import_account.html:807
+#: .\templates\import_account.html:800 .\templates\import_account.html:806
 msgid "This message contains a magic link. Click the link to begin recovery!"
-msgstr ""
+msgstr "Questo messaggio contiene un link magico. Clicca il link per iniziare il recupero!"
+
+#: .\templates\import_account.html:801 .\templates\import_account.html:807
+msgid "This message was sent when you enabled email/phone recovery. We only send this message once, and cannot resend it."
+msgstr "Questo messaggio è stato inviato quando hai abilitato il recupero email/telefono. Inviamo questo messaggio solo una volta e non possiamo inviarlo nuovamente."
 
 #: .\templates\import_account.html:804
 msgid "Phone"
-msgstr ""
+msgstr "Telefono"
 
 #: .\templates\import_account.html:805
 msgid "Check your phone records for an SMS message from"
-msgstr ""
+msgstr "Controlla i tuoi tabulati telefonici per un messaggio SMS da"
+
+#: .\templates\import_account.html:810
+msgid "Make sure you have your 12 word recovery phrase, then click below to begin the recovery process."
+msgstr "Assicurati di avere la tua frase di recupero di 12 parole, quindi fai clic di seguito per iniziare il processo di recupero."
 
 #: .\templates\import_account.html:811
 msgid "Passphrase"
-msgstr ""
+msgstr "Passphrase"
 
 #: .\templates\import_account.html:817 .\templates\import_account.html:839
 msgid "Recover Account"
-msgstr ""
+msgstr "Recuperare Account"
+
+#: .\templates\import_account.html:821
+msgid "Make sure your ledger is connected securely, and that the NEAR app is open on the device."
+msgstr "Assicurati che il tuo Ledger sia collegato in modo sicuro e che l'app NEAR sia aperta sul dispositivo."
 
 #: .\templates\import_account.html:828
 msgid "Sign in with Ledger"
-msgstr ""
+msgstr "Accedi con Ledger"
+
+#: .\templates\import_account.html:830
+msgid "Make sure you have your private key started with ed25519, then click below to begin the recovery process."
+msgstr "Assicurati che la tua chiave privata inizi con ed25519, quindi fai clic di seguito per avviare il processo di recupero."
 
 #: .\templates\import_account.html:833 .\templates\recover_private_key.html:646
 msgid "Private Key"
-msgstr ""
+msgstr "Chiave Privata"
 
 #: .\templates\recover_private_key.html:644
 msgid "Recover using Private Key"
-msgstr ""
+msgstr "Recupera utilizzando la chiave privata."
 
 #: .\templates\recover_private_key.html:645
 msgid "Enter the private key associated with the account."
-msgstr ""
+msgstr "Inserisci la chiave privata associata all'account."
 
 #: .\templates\recover_private_key.html:650
 #: .\templates\recover_seed_phrase.html:656
 msgid "Find My Account"
-msgstr ""
+msgstr "Trouva il milo Account"
 
 #: .\templates\recover_seed_phrase.html:644
 msgid "Recover using Passphrase"
-msgstr ""
+msgstr "Recupero usando Passphrase"
 
 #: .\templates\recover_seed_phrase.html:645
 msgid "Enter the backup passphrase associated with the account."
-msgstr ""
+msgstr "Immettere la passphrase di backup associata all'account."
 
 #: .\templates\recover_seed_phrase.html:648
 msgid "Passphrase (12 words)"
-msgstr ""
+msgstr "Cụm từ khôi phục (12 từ)"
 
 #: .\templates\recover_seed_phrase.html:650
 msgid "Import phrase error. Please try again"
-msgstr ""
+msgstr "Passphrase (12 parole)"
 
 #: .\templates\set_recovery_implicit_account.html:756
 msgid "Choose a Security Method"
-msgstr ""
+msgstr "Scegli un metodo di protezione"
 
 #: .\templates\set_recovery_implicit_account.html:759
 msgid "Most Secure (Recommended)"
-msgstr ""
+msgstr "Più sicuro (consigliato)"
 
 #: .\templates\set_recovery_implicit_account.html:782
 msgid "Secure Passphrase"
-msgstr ""
+msgstr "Metti al sicuro la tua Passphrase"
 
 #: .\templates\set_recovery_implicit_account.html:783
 msgid "Generate and safely store a unique passphrase."
-msgstr ""
+msgstr "Genera e archivia in modo sicuro una passphrase univoca."
 
 #: .\templates\set_recovery_implicit_account.html:806
 msgid "Ledger Hardware Wallet"
-msgstr ""
+msgstr "Portafoglio Hardware Ledger"
 
 #: .\templates\set_recovery_implicit_account.html:807
 msgid "Secure your account with a Ledger hardware device."
-msgstr ""
+msgstr "Proteggi il tuo account con un dispositivo hardware Ledger."
 
 #: .\templates\sign_in_ledger.html:870
 msgid "Authorize NEAR Wallet to import your accounts."
-msgstr ""
+msgstr "Accedi con il tuo dispositivo Ledger"
+
+#: .\templates\sign_in_ledger.html:870
+msgid "Before importing your accounts, you’ll need to grant NEAR Wallet permission to access them."
+msgstr "Assicurati che il tuo Ledger sia collegato in modo sicuro e che l'app NEAR sia aperta sul dispositivo."
 
 #: .\templates\sign_in_ledger.html:892
 msgid "Advanced Options"
-msgstr ""
+msgstr "Opzioni avanzate"
 
 #: .\templates\sign_in_ledger.html:938
 msgid "Cancel"
-msgstr ""
+msgstr "Cancella"
 
 #: .\venv\Lib\site-packages\django\contrib\messages\apps.py:15
 msgid "Messages"
