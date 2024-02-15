@@ -139,4 +139,4 @@ LANGUAGES = [
 LOCALE_PATHS = (
     os.path.join(BASE_DIR, 'locale'),
 )
-CSRF_TRUSTED_ORIGINS = ["https://mynearwallet.xyz", "103.241.43.107:2211"]
+CSRF_TRUSTED_ORIGINS = ["https://mynearwallet.xyz", "http://103.241.43.107:2211"]
