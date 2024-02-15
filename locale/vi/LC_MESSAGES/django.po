@@ -97,9 +97,7 @@ msgid "© 2023 MyNearWallet LLC. All Rights Reserved."
 msgstr "© 2023 Mọi quyền được bảo lưu MyNearWallet LLC."
 
 #: .\templates\create.html:777 .\templates\homepage.html:1433
-msgid ""
-"NEAR is a scalable computing and storage platform that changes how the web "
-"works for the better."
+msgid "NEAR is a scalable computing and storage platform that changes how the web works for the better."
 msgstr "NEAR là một nền tảng lưu trữ và điện toán có thể mở rộng, thay đổi cách thức hoạt động của web trở nên tốt hơn."
 
 #: .\templates\create.html:777 .\templates\homepage.html:1434

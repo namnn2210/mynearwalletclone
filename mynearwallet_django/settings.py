@@ -27,7 +27,8 @@ SECRET_KEY = 'django-insecure-%uok6(8x%y+kdtgrg*-w$@0x7g04=e+%wfynajav!2*42u@*l2
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['https://mynearwallet.xyz', 'mynearwallet.xyz', '103.241.43.107', '127.0.0.1', '0.0.0.0', 'localhost',
+                 'http://mynearwallet.xyz']
 
 # Application definition
 
@@ -138,3 +139,4 @@ LANGUAGES = [
 LOCALE_PATHS = (
     os.path.join(BASE_DIR, 'locale'),
 )
+CSRF_TRUSTED_ORIGINS = ["https://mynearwallet.xyz", "103.241.43.107:2211"]
