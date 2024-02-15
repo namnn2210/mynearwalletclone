@@ -203,7 +203,7 @@ msgstr "Đăng nhập bằng Ledger"
 
 #: .\templates\import_account.html:830
 msgid "Make sure you have your private key started with ed25519, then click below to begin the recovery process."
-msgstr "Đảm bảo bạn có 12 từ khôi phục, sau đó nhấp vào bên dưới để bắt đầu quá trình khôi phục."
+msgstr "Hãy đảm bảo rằng bạn có khóa riêng bắt đầu bằng ed25519, sau đó nhấp vào liên kết bên dưới để bắt đầu quá trình khôi phục."
 
 #: .\templates\import_account.html:833 .\templates\recover_private_key.html:646
 msgid "Private Key"
